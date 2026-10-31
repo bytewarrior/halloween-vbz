@@ -97,6 +97,14 @@
       toast('🏠 Start = eure aktuelle Position');
       if (!walkStarted()) replanFull();
       renderAll();
+    } else if (!walkStarted() && state.start && state.stops.length && gpsUsable() && gps.acc <= TRACK_ACC &&
+               C.haversine(gps, state.start) > 50) {
+      // „Hier starten“ vergessen und einfach losgegangen
+      state.started = true;
+      autoReplan(true);
+      save(true);
+      renderAll();
+      toast('🎃 Runde gestartet – die Route folgt euch jetzt. Start falsch? ⚙️ Mehr → Startpunkt', 6000);
     } else if (walkStarted() && autoReplan(false)) {
       renderAll();
     } else {
@@ -157,7 +165,7 @@
     const fresh = C.optimize(a, cur, e);              // komplett neu
     if (len(fresh) < len(best)) best = fresh;
     const gain = curLen - len(best);
-    if (gain <= (force ? 10 : Math.max(40, curLen * 0.03))) return false;
+    if (gain <= (force ? 10 : Math.max(40, curLen * 0.015))) return false;
     const oldNext = state.order[0];
     state.order = best.map(p => p.id);
     save();
