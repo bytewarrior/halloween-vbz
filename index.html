@@ -48,10 +48,11 @@
   <p class="hint">Die App holt sich die Adressen aus der WhatsApp-Gruppe, plant daraus eine Runde zu Fuß
     und zeigt euch unterwegs, wo es als Nächstes Süßes gibt.</p>
   <ol class="steps">
-    <li><b>Adressen holen:</b> Am einfachsten im WhatsApp-Gruppenchat <b>⋮ → Mehr → Chat exportieren →
-      Ohne Medien</b> und an „Halloween in Vbz“ teilen (oder speichern und unter <b>➕ Adressen → 📄 Datei</b>
-      öffnen). Alternativ Nachrichten markieren, kopieren und unter <b>➕ Adressen</b> einfügen.
-      Dann <b>🔍 Erkennen</b> und <b>Übernehmen</b>.</li>
+    <li><b>Nachrichten kopieren:</b> In der WhatsApp-Gruppe die erste Nachricht mit einer Adresse
+      <b>lange drücken</b>, bis sie markiert ist. Weitere Nachrichten nur <b>kurz antippen</b>. Dann oben auf
+      das <b>Kopieren-Symbol</b> (zwei Blätter, ggf. unter ⋮).</li>
+    <li><b>Einfügen:</b> Hier unten auf <b>➕ Adressen</b> → <b>📋 Einfügen</b> (oder lange ins Textfeld drücken →
+      Einfügen) → <b>🔍 Erkennen</b> → <b>Übernehmen</b>.</li>
     <li><b>Kurz prüfen:</b> Jedes Haus erscheint als 🎃 auf der Karte, nummeriert in der geplanten Reihenfolge.
       Hat ein Kürbis einen gestrichelten gelben Ring, ist die Lage nur geschätzt: antippen →
       <b>📌 Verschieben</b> und an die richtige Stelle ziehen.</li>
@@ -78,6 +79,20 @@
 
   <h3>Häufige Fragen</h3>
   <details>
+    <summary>In WhatsApp erscheint kein „Kopieren“.</summary>
+    <p>WhatsApp bietet Kopieren nur an, wenn ausschließlich Textnachrichten markiert sind. Ist ein Foto,
+      Sticker, GIF, eine Sprachnachricht oder eine gelöschte Nachricht dabei, verschwindet das Symbol –
+      diese Nachricht wieder antippen, dann ist sie abgewählt. Sonst einfach in mehreren Portionen kopieren
+      (siehe nächste Frage).</p>
+  </details>
+  <details>
+    <summary>Müssen alle Nachrichten auf einmal kopiert werden?</summary>
+    <p>Nein. Portion kopieren → in der App <b>📋 Einfügen</b>, zurück zu WhatsApp, nächste Portion kopieren →
+      wieder <b>📋 Einfügen</b>. Die Portionen werden im Feld aneinandergehängt; am Ende einmal
+      <b>🔍 Erkennen</b>. Auch einzelne Nachrichten gehen: lange drücken → Kopieren. Doppelte Adressen
+      werden automatisch übersprungen.</p>
+  </details>
+  <details>
     <summary>Was passiert, wenn wir abkürzen oder ein anderes Haus zuerst besuchen?</summary>
     <p>Nichts Schlimmes. Die App plant die restliche Runde laufend ab eurem Standort neu, sobald es dadurch
       spürbar kürzer wird. Abgehakte Häuser bleiben abgehakt. Von Hand geht es unter
@@ -88,12 +103,6 @@
     <p>Standort am Handy einschalten und der Seite erlauben (in Chrome: Symbol links neben der Adresse →
       Berechtigungen → Standort). Draußen dauert die erste genaue Position manchmal eine halbe Minute.
       Oben rechts steht die Genauigkeit (📡 ±… m).</p>
-  </details>
-  <details>
-    <summary>In WhatsApp kann ich nicht kopieren.</summary>
-    <p>Erste Nachricht <b>lange drücken</b>, weitere nur <b>kurz antippen</b>, dann oben auf das Kopieren-Symbol
-      (zwei Blätter, ggf. unter ⋮). Fehlt es, ist ein Foto, Sticker, GIF oder eine Sprachnachricht mit markiert –
-      diese abwählen. Noch einfacher ist der Chat-Export (siehe nächste Frage).</p>
   </details>
   <details>
     <summary>Eine Adresse wurde nicht erkannt.</summary>
@@ -117,8 +126,9 @@
       und funktioniert auch bei schlechtem Netz.</p>
   </details>
   <details>
-    <summary>Kann ich den Chat direkt an die App schicken?</summary>
-    <p>Ja: im WhatsApp-Chat ⋮ → Mehr → <b>Chat exportieren</b> → <b>Ohne Medien</b>. Ist die App installiert
+    <summary>Geht es auch ohne Kopieren?</summary>
+    <p>Nur, wenn die Gruppe den Export erlaubt – bei Gruppen mit „Erweitertem Chat-Datenschutz“ ist er gesperrt,
+      dann bleibt das Kopieren. Sonst: im WhatsApp-Chat ⋮ → Mehr → <b>Chat exportieren</b> → <b>Ohne Medien</b>. Ist die App installiert
       (Android), erscheint „Halloween in Vbz“ im Teilen-Menü. Sonst die Datei speichern, z. B. in „Dateien“
       oder „Downloads“, und unter <b>➕ Adressen → 📄 Datei</b> öffnen – TXT und ZIP gehen beide.
       Ausgewertet werden nur Nachrichten von heute (Haken „nur Nachrichten von heute“).</p>
@@ -138,15 +148,16 @@
 
 <section class="sheet" id="sheet-import">
   <div class="sheet-head"><h2>Adressen aus WhatsApp</h2><button class="ghost close">✕</button></div>
-  <details class="howto">
-    <summary>Weg 1: Nachrichten kopieren</summary>
-    <p>Erste Nachricht <b>lange drücken</b>, weitere nur <b>kurz antippen</b>, oben auf das
+  <details class="howto" open>
+    <summary>So kopiert ihr die Nachrichten</summary>
+    <p>In WhatsApp erste Nachricht <b>lange drücken</b>, weitere nur <b>kurz antippen</b>, oben auf das
       <b>Kopieren-Symbol</b> (zwei Blätter, ggf. unter ⋮). Dann hier <b>📋 Einfügen</b>.
-      <br>Kein Kopieren-Symbol? Dann ist ein Foto, Sticker, GIF oder eine Sprachnachricht mit markiert –
-      diese wieder abwählen.</p>
+      <br>Kein Kopieren-Symbol? Dann ist ein Foto, Sticker oder eine Sprachnachricht mit markiert – abwählen.
+      Ihr könnt auch in Portionen kopieren: jedes <b>📋 Einfügen</b> hängt an, am Ende einmal
+      <b>🔍 Erkennen</b>.</p>
   </details>
   <details class="howto">
-    <summary>Weg 2: ganzen Chat exportieren (einfacher)</summary>
+    <summary>Alternative: Chat exportieren (falls die Gruppe es erlaubt)</summary>
     <p>Im Gruppenchat <b>⋮ → Mehr → Chat exportieren → Ohne Medien</b>. Ist die App installiert, im
       Teilen-Menü <b>„Halloween in Vbz“</b> wählen. Sonst die Datei speichern (z. B. „Dateien“ oder
       „Downloads“) und hier <b>📄 Datei</b> antippen. Es werden nur die Nachrichten von heute ausgewertet.</p>

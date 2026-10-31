@@ -460,7 +460,8 @@
     const text = $('import-text').value;
     const P = C.parseChat(text);
     const onlyToday = $('only-today').checked && P.hasHeaders;
-    const msgs = onlyToday ? P.msgs.filter(m => C.isToday(m.date)) : P.msgs;
+    // Einzeln kopierte Nachrichten haben keinen Zeitstempel – die immer mitnehmen
+    const msgs = onlyToday ? P.msgs.filter(m => !m.date || C.isToday(m.date)) : P.msgs;
     found = [];
     const keys = new Set();
     for (const m of msgs) {
@@ -526,7 +527,14 @@
   $('btn-apply').onclick = applyImport;
   $('btn-paste').onclick = () => {
     if (!navigator.clipboard || !navigator.clipboard.readText) { toast('Bitte lange ins Feld tippen → Einfügen.'); return; }
-    navigator.clipboard.readText().then(t => { $('import-text').value = t; detect(); })
+    navigator.clipboard.readText().then(t => {
+      if (!t.trim()) { toast('Die Zwischenablage ist leer – erst in WhatsApp kopieren.', 4000); return; }
+      // Anhängen statt ersetzen, damit man in Portionen kopieren kann
+      const ta = $('import-text');
+      ta.value = ta.value.trim() ? ta.value.replace(/\s+$/, '') + '\n' + t : t;
+      ta.scrollTop = ta.scrollHeight;
+      detect();
+    })
       .catch(() => toast('Kein Zugriff auf die Zwischenablage – lange ins Feld tippen → Einfügen.', 5000));
   };
   $('btn-manual').onclick = () => {

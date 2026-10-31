@@ -1,6 +1,6 @@
 /* Service Worker: App offline verfügbar machen, Kartenkacheln zwischenspeichern,
  * geteilte Texte/Chat-Exporte (Web Share Target) entgegennehmen. */
-const VERSION = 'sr-v5';
+const VERSION = 'sr-v6';
 const SHELL = [
   './', 'index.html', 'style.css', 'app.js', 'core.js', 'data.js', 'manifest.webmanifest',
   'vendor/leaflet.js', 'vendor/leaflet.css', 'icons/icon-192.png', 'icons/icon-512.png',
