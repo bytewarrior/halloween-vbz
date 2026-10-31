@@ -189,3 +189,4 @@ details.howto { padding: 6px 0; }
 details.howto summary { color: var(--yellow); font-size: 15px; }
 details.howto p { font-size: 14px; }
 #import-buttons > button { flex: 1 1 0; white-space: nowrap; padding: 10px 4px; font-size: 15px; }
+.leaflet-container a.popup-link { display: block; margin: 0 0 10px; font-size: 14px; color: var(--yellow); }

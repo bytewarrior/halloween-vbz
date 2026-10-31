@@ -279,11 +279,16 @@
         .addTo(map);
     }
   }
+  // Google-Maps-Suche nach der Adresse, Kartenausschnitt um die geschätzte Lage
+  function mapsLink(s) {
+    return `https://www.google.com/maps/search/${encodeURIComponent(s.label)}/@${s.lat.toFixed(5)},${s.lon.toFixed(5)},18z`;
+  }
   function popupHtml(s) {
     const n = state.order.indexOf(s.id) + 1;
     return `<div class="popup-title">${s.visited ? '🍬' : '🎃 ' + n + '.'} ${esc(s.label)}</div>` +
       (s.note ? `<div class="popup-note">${esc(s.note)}</div>` : '') +
-      (s.approx && !s.visited ? '<div class="popup-note">⚠️ Lage geschätzt – mit „Verschieben“ korrigieren.</div>' : '') +
+      (s.approx && !s.visited ? '<div class="popup-note">⚠️ Lage geschätzt – mit „Verschieben“ korrigieren.</div>' +
+        (/^pt:/.test(s.key || '') ? '' : `<a class="popup-link" target="_blank" rel="noopener" href="${mapsLink(s)}">🗺️ In Google Maps ansehen</a>`) : '') +
       '<div class="popup-actions">' +
       (s.visited ? `<button data-act="uncheck" data-id="${s.id}">↺ Zurück</button>`
         : `<button class="primary" data-act="check" data-id="${s.id}">✓ Abhaken</button>` +
