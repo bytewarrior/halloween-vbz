@@ -1,4 +1,4 @@
-# Süßes-Route 🎃
+# Halloween in Vbz 🎃
 
 Kleine Web-App (PWA) für Halloween im Dorf: Adressen aus dem WhatsApp-Gruppenchat
 einfügen, daraus eine Rundtour zu Fuß berechnen, live auf der OpenStreetMap-Karte mitlaufen
@@ -13,7 +13,7 @@ und die Häuser abhaken. Neue Adressen werden nur in den noch offenen Teil der R
 
 1. Seite in Chrome öffnen, Standort erlauben, über ⋮ → „Zum Startbildschirm hinzufügen“ installieren.
 2. In WhatsApp die Nachrichten markieren → ⋮ → Kopieren → in der App unter „Adressen“ einfügen
-   → „Erkennen“ → „Übernehmen“. Alternativ Chat exportieren und an „Süßes-Route“ teilen.
+   → „Erkennen“ → „Übernehmen“. Alternativ Chat exportieren und an „Halloween in Vbz“ teilen.
 3. Am Startpunkt „📍 Hier starten“ (oder „▶ Los“, wenn der Start schon gesetzt ist). Ab dann
    plant die App die Restroute laufend ab eurer Position neu – wer abkürzt oder ein anderes Haus
    zuerst besucht, bekommt automatisch die passende Reihenfolge.

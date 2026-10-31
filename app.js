@@ -1,4 +1,4 @@
-/* Süßes-Route: Oberfläche, Karte, GPS, Abhaken, Import, Neuplanung. */
+/* Halloween in Vbz: Oberfläche, Karte, GPS, Abhaken, Import, Neuplanung. */
 (function () {
   'use strict';
   const C = window.Core;
