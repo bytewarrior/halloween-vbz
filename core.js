@@ -11,8 +11,9 @@
       .replace(/[^a-z0-9]+/g, ' ').trim();
   }
   // Vergleichsform eines Straßennamens: ohne Leerzeichen, „straße“ → „str“
+  // (auch vertippt: „strase“, „stasse“, „strsse“ …)
   function stem(s) {
-    return norm(s).replace(/ /g, '').replace(/strasse$/, 'str');
+    return norm(s).replace(/ /g, '').replace(/st(r?a?s{1,2}e)$/, 'str');
   }
   function lev(a, b) {
     const n = b.length;
