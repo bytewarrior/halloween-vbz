@@ -40,7 +40,93 @@
   <button data-sheet="sheet-list"><span>📋</span>Liste</button>
   <button id="btn-follow" class="on"><span>👻</span>Folgen</button>
   <button data-sheet="sheet-menu"><span>⚙️</span>Mehr</button>
+  <button data-sheet="sheet-help"><span>❓</span>Hilfe</button>
 </nav>
+
+<section class="sheet" id="sheet-help">
+  <div class="sheet-head"><h2>❓ So funktioniert’s</h2><button class="ghost close">✕</button></div>
+  <p class="hint">Die App holt sich die Adressen aus der WhatsApp-Gruppe, plant daraus eine Runde zu Fuß
+    und zeigt euch unterwegs, wo es als Nächstes Süßes gibt.</p>
+  <ol class="steps">
+    <li><b>Adressen holen:</b> In WhatsApp die erste Nachricht lange drücken, weitere antippen, dann oben
+      auf <b>Kopieren</b> (ggf. unter ⋮). Hier unten auf <b>➕ Adressen</b>, ins Feld einfügen,
+      <b>🔍 Erkennen</b> und <b>Übernehmen</b>.</li>
+    <li><b>Kurz prüfen:</b> Jedes Haus erscheint als 🎃 auf der Karte, nummeriert in der geplanten Reihenfolge.
+      Hat ein Kürbis einen gestrichelten gelben Ring, ist die Lage nur geschätzt: antippen →
+      <b>📌 Verschieben</b> und an die richtige Stelle ziehen.</li>
+    <li><b>Losgehen:</b> Am Startpunkt auf <b>📍 Hier starten</b> drücken. Die Runde endet wieder dort.</li>
+    <li><b>Unterwegs:</b> Der gelben Linie folgen. Steht ihr vor einem Haus, erscheint oben ein Hinweis →
+      <b>✓ Abhaken</b>. Alternativ den Kürbis antippen oder in der <b>📋 Liste</b> abhaken.</li>
+    <li><b>Neue Adressen:</b> Kommen später Nachrichten dazu, einfach wieder alles kopieren und einfügen.
+      Was schon drin ist, wird übersprungen, Neues wird in die restliche Runde eingeplant.</li>
+  </ol>
+
+  <h3>Was bedeutet was?</h3>
+  <ul class="legend">
+    <li><span class="pin inline next">🎃<b>1</b></span> das nächste Haus</li>
+    <li><span class="pin inline">🎃<b>2</b></span> die weiteren Häuser, in Reihenfolge</li>
+    <li><span class="pin inline approx">🎃</span> Lage nur geschätzt – bitte prüfen</li>
+    <li><span class="pin inline done">🍬</span> schon besucht</li>
+    <li><span class="pin inline">👻</span> ihr (der Kreis zeigt die GPS-Genauigkeit)</li>
+    <li><span class="pin inline">🏠</span> Start und Ziel der Runde</li>
+    <li><span class="line yellow"></span> Weg zum nächsten Haus</li>
+    <li><span class="line orange"></span> restliche Runde</li>
+    <li><span class="line purple"></span> schon gegangene Strecke</li>
+    <li><span class="legend-text">🍬 3/21 · noch 2,4 km</span> oben: besucht/gesamt und Reststrecke</li>
+  </ul>
+
+  <h3>Häufige Fragen</h3>
+  <details>
+    <summary>Was passiert, wenn wir abkürzen oder ein anderes Haus zuerst besuchen?</summary>
+    <p>Nichts Schlimmes. Die App plant die restliche Runde laufend ab eurem Standort neu, sobald es dadurch
+      spürbar kürzer wird. Abgehakte Häuser bleiben abgehakt. Von Hand geht es unter
+      <b>⚙️ Mehr → Restliche Route neu optimieren</b>.</p>
+  </details>
+  <details>
+    <summary>Die App findet unseren Standort nicht.</summary>
+    <p>Standort am Handy einschalten und der Seite erlauben (in Chrome: Symbol links neben der Adresse →
+      Berechtigungen → Standort). Draußen dauert die erste genaue Position manchmal eine halbe Minute.
+      Oben rechts steht die Genauigkeit (📡 ±… m).</p>
+  </details>
+  <details>
+    <summary>Eine Adresse wurde nicht erkannt.</summary>
+    <p>Erkannt wird „Straße + Hausnummer“, auch mit „Str.“ oder kleinen Tippfehlern. Fehlt eine, unter
+      <b>➕ Adressen → Einzeln hinzufügen</b> Straße und Nummer eingeben – oder auf der Karte lange drücken →
+      <b>🎃 Haus hier</b>.</p>
+  </details>
+  <details>
+    <summary>Ein Haus fällt aus oder liegt falsch.</summary>
+    <p>Kürbis antippen → <b>🗑️</b> entfernt es, <b>📌 Verschieben</b> korrigiert die Lage.</p>
+  </details>
+  <details>
+    <summary>Der Startpunkt stimmt nicht.</summary>
+    <p>Unter <b>⚙️ Mehr → Startpunkt</b> neu setzen: aktuelle Position, auf der Karte tippen oder Adresse eingeben.
+      Ohne Rundweg zurück endet die Route beim letzten Haus (Haken „Rundweg zurück zum Start“).</p>
+  </details>
+  <details>
+    <summary>Wie installiere ich die App?</summary>
+    <p>Android/Chrome: ⋮ → <b>App installieren</b> bzw. <b>Zum Startbildschirm hinzufügen</b>.
+      iPhone/Safari: Teilen-Symbol → <b>Zum Home-Bildschirm</b>. Danach startet sie wie eine normale App
+      und funktioniert auch bei schlechtem Netz.</p>
+  </details>
+  <details>
+    <summary>Kann ich den Chat direkt an die App schicken?</summary>
+    <p>Auf Android nach der Installation: im WhatsApp-Chat ⋮ → Mehr → <b>Chat exportieren</b> → ohne Medien →
+      „Halloween in Vbz“ auswählen. Ausgewertet werden nur Nachrichten von heute (Haken
+      „nur Nachrichten von heute“).</p>
+  </details>
+  <details>
+    <summary>Muss das Display anbleiben?</summary>
+    <p>Ja – die Strecke wird nur aufgezeichnet, solange die App offen ist. Sie hält den Bildschirm deshalb
+      selbst an. Das kostet Akku, eine Powerbank schadet nicht.</p>
+  </details>
+  <details>
+    <summary>Wo landen unsere Daten?</summary>
+    <p>Nur auf diesem Handy. Es gibt kein Konto und keinen Server, die Adressen werden nirgendwohin geschickt.
+      <b>⚙️ Mehr → Alles zurücksetzen</b> löscht alles.</p>
+  </details>
+  <button class="primary wide close">Alles klar – los geht’s! 🎃</button>
+</section>
 
 <section class="sheet" id="sheet-import">
   <div class="sheet-head"><h2>Adressen aus WhatsApp</h2><button class="ghost close">✕</button></div>

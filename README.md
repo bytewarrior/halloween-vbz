@@ -11,6 +11,9 @@ und die Häuser abhaken. Neue Adressen werden nur in den noch offenen Teil der R
 
 ## Bedienung
 
+Eine ausführliche Anleitung mit Legende und häufigen Fragen steckt in der App selbst (❓ Hilfe,
+öffnet sich beim ersten Start automatisch). Kurzfassung:
+
 1. Seite in Chrome öffnen, Standort erlauben, über ⋮ → „Zum Startbildschirm hinzufügen“ installieren.
 2. In WhatsApp die Nachrichten markieren → ⋮ → Kopieren → in der App unter „Adressen“ einfügen
    → „Erkennen“ → „Übernehmen“. Alternativ Chat exportieren und an „Halloween in Vbz“ teilen.

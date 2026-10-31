@@ -286,7 +286,7 @@
     const total = state.stops.length, done = total - openStops().length;
     let html = total ? `🍬 <b>${done}/${total}</b>` : 'Noch keine Adressen';
     if (remaining > 0 && openStops().length) html += ` · noch <b>${(remaining / 1000).toFixed(1).replace('.', ',')} km</b>`;
-    html += gps ? ` · 📡 ±${Math.round(gps.acc)} m` : ' · 📡 –';
+    html += ' · <span class="ico">📡 </span>' + (gps ? `±${Math.round(gps.acc)} m` : 'kein GPS');
     $('stats').innerHTML = html;
   }
   function renderList() {
@@ -629,6 +629,12 @@
   trackLine.setLatLngs(state.track.map(t => [t[0], t[1]]));
   renderAll();
   if (state.stops.length) fitAll();
+  // Beim allerersten Start die Anleitung zeigen (nicht, wenn gerade ein Chat geteilt wurde)
+  if (!state.helpSeen && !/[?&]share=1/.test(location.search)) {
+    state.helpSeen = true;
+    save(true);
+    setTimeout(() => openSheet('sheet-help'), 400);
+  }
   receiveShare();
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) navigator.serviceWorker.register('sw.js');
 
