@@ -1,0 +1,20 @@
+# Zeilenenden projektweit auf Unix (LF) normieren -- unabhaengig von der
+# core.autocrlf-Einstellung des jeweiligen Rechners.
+#   text=auto : Git erkennt Textdateien und speichert sie im Repository (Server)
+#               immer mit LF.
+#   eol=lf    : auch beim Auschecken LF -> Arbeitskopien ueberall mit LF.
+* text=auto eol=lf
+
+# Bekannte Binaerdateien niemals anfassen (keine EOL-Konvertierung).
+*.png  binary
+*.ico  binary
+*.wav  binary
+*.dsf  binary
+*.exe  binary
+*.dll  binary
+*.sys  binary
+*.cpl  binary
+*.qm   binary
+*.bin  binary
+*.pcap binary
+*.pcapng binary

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#160e1f">
+<title>Süßes-Route</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="vendor/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="dark">
+<div id="map"></div>
+
+<header id="top">
+  <div class="title">🎃 Süßes-Route</div>
+  <div id="stats">Noch keine Adressen</div>
+</header>
+
+<div id="banner" hidden>
+  <div id="banner-text"></div>
+  <div class="row">
+    <button id="banner-ok" class="primary">✓ Abhaken</button>
+    <button id="banner-close" class="ghost">✕</button>
+  </div>
+</div>
+
+<div id="startbar" hidden>
+  <div id="startbar-text"></div>
+  <div class="row">
+    <button id="btn-start-here">📍 Hier starten</button>
+    <button id="btn-go" class="primary">▶ Los</button>
+  </div>
+</div>
+
+<nav id="bar">
+  <button data-sheet="sheet-import"><span>➕</span>Adressen</button>
+  <button data-sheet="sheet-list"><span>📋</span>Liste</button>
+  <button id="btn-follow" class="on"><span>👻</span>Folgen</button>
+  <button data-sheet="sheet-menu"><span>⚙️</span>Mehr</button>
+</nav>
+
+<section class="sheet" id="sheet-import">
+  <div class="sheet-head"><h2>Adressen aus WhatsApp</h2><button class="ghost close">✕</button></div>
+  <p class="hint">In WhatsApp Nachrichten lange antippen, weitere markieren, oben <b>⋮ → Kopieren</b>, hier einfügen.
+    Oder im Chat <b>⋮ → Mehr → Chat exportieren</b> und an „Süßes-Route“ teilen.</p>
+  <textarea id="import-text" rows="5" placeholder="[18:02, 31.10.2026] Anna: Steingasse 4, bitte klingeln"></textarea>
+  <div class="row">
+    <button id="btn-paste">📋 Einfügen</button>
+    <button id="btn-detect" class="primary">🔍 Erkennen</button>
+  </div>
+  <label class="check"><input type="checkbox" id="only-today" checked> nur Nachrichten von heute</label>
+  <div id="import-summary" class="hint"></div>
+  <ul id="import-results" class="list"></ul>
+  <button id="btn-apply" class="primary wide" hidden>Übernehmen</button>
+  <h3>Einzeln hinzufügen</h3>
+  <div class="row">
+    <input id="manual-street" list="streets" placeholder="Straße" autocomplete="off">
+    <input id="manual-hn" placeholder="Nr." inputmode="text" class="hn">
+    <button id="btn-manual">➕</button>
+  </div>
+  <p class="hint">Oder auf der Karte lange drücken, um einen Punkt zu setzen.</p>
+</section>
+
+<section class="sheet" id="sheet-list">
+  <div class="sheet-head"><h2>Route</h2><button class="ghost close">✕</button></div>
+  <div id="list-summary" class="hint"></div>
+  <ul id="stop-list" class="list"></ul>
+</section>
+
+<section class="sheet" id="sheet-menu">
+  <div class="sheet-head"><h2>Einstellungen</h2><button class="ghost close">✕</button></div>
+  <h3>Startpunkt</h3>
+  <div id="start-info" class="hint"></div>
+  <div class="row">
+    <button id="btn-start-gps">📍 Hier</button>
+    <button id="btn-start-map">🗺️ Auf Karte tippen</button>
+  </div>
+  <div class="row">
+    <input id="start-street" list="streets" placeholder="Straße" autocomplete="off">
+    <input id="start-hn" placeholder="Nr." class="hn">
+    <button id="btn-start-addr">Setzen</button>
+  </div>
+  <label class="check"><input type="checkbox" id="opt-round"> Rundweg zurück zum Start</label>
+  <label class="check"><input type="checkbox" id="opt-dark"> Dunkle Karte</label>
+  <label class="check"><input type="checkbox" id="opt-arrive"> Hinweis, wenn wir an einem Haus sind</label>
+  <h3>Route</h3>
+  <button id="btn-reopt" class="wide">🔀 Restliche Route neu optimieren</button>
+  <button id="btn-clear-track" class="wide">🧹 Gegangene Strecke löschen</button>
+  <button id="btn-reset" class="wide danger">🗑️ Alles zurücksetzen</button>
+  <p class="hint small">Karten- und Adressdaten © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap-Mitwirkende</a>.
+    Adressen und Route bleiben nur auf diesem Gerät.</p>
+</section>
+
+<datalist id="streets"></datalist>
+<div id="toast" hidden></div>
+
+<script src="vendor/leaflet.js"></script>
+<script src="data.js"></script>
+<script src="core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

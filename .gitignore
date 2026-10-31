@@ -1,0 +1,4 @@
+# Chat-Dumps enthalten Namen und Telefonnummern – niemals einchecken
+Adressen.txt
+*.chat.txt
+__pycache__/
