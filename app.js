@@ -604,19 +604,73 @@
     closeSheets();
   };
 
+  // ------------------------------------------------------------- Dateien (Chat-Export)
+  // WhatsApp exportiert als .txt oder – je nach Version – als .zip mit einer .txt darin.
+  async function zipTexts(buf) {
+    const dv = new DataView(buf), dec = new TextDecoder();
+    let eocd = -1;
+    for (let i = buf.byteLength - 22; i >= Math.max(0, buf.byteLength - 65557); i--) {
+      if (dv.getUint32(i, true) === 0x06054b50) { eocd = i; break; }
+    }
+    if (eocd < 0) throw new Error('ZIP-Datei ist beschädigt.');
+    const out = [];
+    let p = dv.getUint32(eocd + 16, true);
+    for (let k = dv.getUint16(eocd + 10, true); k > 0 && dv.getUint32(p, true) === 0x02014b50; k--) {
+      const method = dv.getUint16(p + 10, true), size = dv.getUint32(p + 20, true);
+      const nlen = dv.getUint16(p + 28, true), elen = dv.getUint16(p + 30, true), clen = dv.getUint16(p + 32, true);
+      const loff = dv.getUint32(p + 42, true);
+      const name = dec.decode(new Uint8Array(buf, p + 46, nlen));
+      p += 46 + nlen + elen + clen;
+      if (!/\.txt$/i.test(name)) continue;
+      const data = new Uint8Array(buf, loff + 30 + dv.getUint16(loff + 26, true) + dv.getUint16(loff + 28, true), size);
+      if (method === 0) out.push(dec.decode(data));
+      else if (method === 8) {
+        const raw = new Blob([data]).stream().pipeThrough(new DecompressionStream('deflate-raw'));
+        out.push(dec.decode(await new Response(raw).arrayBuffer()));
+      }
+    }
+    if (!out.length) throw new Error('In der ZIP-Datei ist kein Chat-Text.');
+    return out.join('\n');
+  }
+  async function fileToText(blob) {
+    const buf = await blob.arrayBuffer();
+    const head = new Uint8Array(buf, 0, Math.min(2, buf.byteLength));
+    return head[0] === 0x50 && head[1] === 0x4b ? zipTexts(buf) : new TextDecoder().decode(buf);
+  }
+  // Export enthält den ganzen Verlauf; die Nachrichten von heute stehen am Ende.
+  function loadChatText(text) {
+    const lines = text.replace(/\r/g, '').split('\n');
+    $('import-text').value = lines.length > 3000 ? lines.slice(-3000).join('\n') : text;
+    detect();
+  }
+  $('btn-file').onclick = () => $('file-input').click();
+  $('file-input').onchange = ev => {
+    const f = ev.target.files[0];
+    ev.target.value = '';
+    if (!f) return;
+    fileToText(f).then(loadChatText).catch(e => toast('Datei konnte nicht gelesen werden: ' + e.message, 6000));
+  };
+
   // ------------------------------------------------------------- Teilen (Web Share Target)
-  function receiveShare() {
+  async function receiveShare() {
     if (!/[?&]share=1/.test(location.search) || !window.caches) return;
     history.replaceState(null, '', location.pathname);
-    caches.open('share').then(c => c.match('shared').then(r => {
-      if (!r) return;
-      c.delete('shared');
-      return r.json().then(d => {
-        $('import-text').value = [d.text, d.files && d.files.join('\n')].filter(Boolean).join('\n');
-        openSheet('sheet-import');
-        detect();
-      });
-    }));
+    const c = await caches.open('share');
+    const r = await c.match('shared');
+    if (!r) return;
+    const d = await r.json();
+    const parts = d.text ? [d.text] : [];
+    try {
+      for (let i = 0; i < (d.files || 0); i++) {
+        const fr = await c.match('shared-file-' + i);
+        if (fr) parts.push(await fileToText(await fr.blob()));
+      }
+    } catch (e) {
+      toast('Geteilte Datei konnte nicht gelesen werden: ' + e.message, 6000);
+    }
+    for (const k of await c.keys()) await c.delete(k);
+    openSheet('sheet-import');
+    loadChatText(parts.join('\n'));
   }
 
   // ------------------------------------------------------------- Start

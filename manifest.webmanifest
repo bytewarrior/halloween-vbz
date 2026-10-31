@@ -22,7 +22,7 @@
       "title": "title",
       "text": "text",
       "url": "url",
-      "files": [{ "name": "file", "accept": ["text/plain", ".txt"] }]
+      "files": [{ "name": "file", "accept": ["text/plain", ".txt", "application/zip", ".zip"] }]
     }
   }
 }

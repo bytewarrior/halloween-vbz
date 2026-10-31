@@ -185,3 +185,7 @@ details p { margin: 8px 0 0; color: var(--muted); font-size: 15px; }
   #stats { font-size: 12px; white-space: nowrap; }
   #stats .ico { display: none; }
 }
+details.howto { padding: 6px 0; }
+details.howto summary { color: var(--yellow); font-size: 15px; }
+details.howto p { font-size: 14px; }
+#import-buttons > button { flex: 1 1 0; white-space: nowrap; padding: 10px 4px; font-size: 15px; }

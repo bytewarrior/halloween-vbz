@@ -1,6 +1,6 @@
 /* Service Worker: App offline verfügbar machen, Kartenkacheln zwischenspeichern,
  * geteilte Texte/Chat-Exporte (Web Share Target) entgegennehmen. */
-const VERSION = 'sr-v4';
+const VERSION = 'sr-v5';
 const SHELL = [
   './', 'index.html', 'style.css', 'app.js', 'core.js', 'data.js', 'manifest.webmanifest',
   'vendor/leaflet.js', 'vendor/leaflet.css', 'icons/icon-192.png', 'icons/icon-512.png',
@@ -53,12 +53,11 @@ function tile(req) {
 
 async function receiveShare(req) {
   const form = await req.formData();
-  const files = [];
-  for (const f of form.getAll('file')) {
-    if (f && typeof f.text === 'function') files.push(await f.text());
-  }
-  const text = [form.get('title'), form.get('text'), form.get('url')].filter(Boolean).join('\n');
   const cache = await caches.open('share');
-  await cache.put('shared', new Response(JSON.stringify({ text, files }), { headers: { 'Content-Type': 'application/json' } }));
+  // Dateien unverändert ablegen (TXT oder ZIP); die App packt sie aus.
+  const files = form.getAll('file').filter(f => f && typeof f.arrayBuffer === 'function');
+  for (let i = 0; i < files.length; i++) await cache.put('shared-file-' + i, new Response(files[i]));
+  const text = [form.get('title'), form.get('text'), form.get('url')].filter(Boolean).join('\n');
+  await cache.put('shared', new Response(JSON.stringify({ text, files: files.length }), { headers: { 'Content-Type': 'application/json' } }));
   return Response.redirect(new URL('./?share=1', self.registration.scope).href, 303);
 }
